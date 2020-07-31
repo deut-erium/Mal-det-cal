@@ -87,8 +87,51 @@ Dynamic_Analysis_Data
 	    └── 0a1fe0f21e5ea80b1b7e85c89ca07a86630e33ed4758627c40310509b37fae35.json
 ```
 
-## Feature Extraction
+## Feature Extraction (Pre-Processing)
+### Static Analysis Data
 
+- Packer Info
+- Linked binaries and functions
+- DLLs
+- Number of strings
+- Size of strings.txt
+- Networking APIs
+- System file functions
+- Structure Info
+	- PE Sections
+		- Entropy
+		- Name
+		- virtual_size
+		- raw_data_size
 
+### Dynamic Analysis Data
+
+- Behavior
+	- count of API calls
+	- file_created
+	- file_written
+	- directory_created
+	- dll_loaded
+	- file_opened
+	- regkey_opened
+	- guid
+	- file_read
+	- regkey_read
+	- regkey_deleted
+	- directory_enumerated
+	- directory_removed
+	- mutex
+	- connects_ip
+- Network
+	- UDP source and destination IPs
+	- DNS requests and answers
+	- ICMP source and destination info
+	- HTTP requests
+	- TCP source and destination IPs
 
 ## Feature Selection
+### Section Entropy
+The PE sections contain data which usually has a known entropy. Higher entropy can indicate packed data. Malicious files are commonly packed to avoid static analysis since the actual code is usually stored encrypted in one of the sections and will only be extracted at runtime.    
+So entropy is an important feature, we used average, min and max entropy as separate features.   
+
+
