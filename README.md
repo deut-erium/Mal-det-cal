@@ -3,7 +3,7 @@ Used static and dynamic analysis data of executable files to detect malware usin
 
 ## IIT Kanpur Hackathon
 
-[Problem Statement](IITK Malware Problem Final.pdf)
+[Problem Statement](./IITK_Malware_Problem_Final.pdf)
 
 ## Dataset
 
