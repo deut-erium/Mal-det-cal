@@ -1,5 +1,5 @@
 # Malware Detection
-Used static and dynamic analysis data of executable files to detect malware using machine learning techniques.
+Utilized Machine Learning techniques to detect malware in Portable Executable (PE) files using static and dynamic analysis data.
 
 ## IIT Kanpur Hackathon
 
@@ -87,6 +87,8 @@ Dynamic_Analysis_Data
 	    └── 0a1fe0f21e5ea80b1b7e85c89ca07a86630e33ed4758627c40310509b37fae35.json
 ```
 
-## Feature Extracted
+## Feature Extraction
 
-## Feature Selected
+
+
+## Feature Selection
