@@ -11,6 +11,11 @@ Detects and classifies malware from static and dynamic analysis of the file
 ## Lakshay Kumar
 ## Ritik Roongta
 
+## Requirements to run
+We have run on python3.8, use requirements.txt to install the required packages  
+Other requirements being about a GB of free space in the directory in which code is being run
+
+
 ## Submission Structure
 ### [MalwareDetection.py](MalwareDetection.py)
 Usage info: `python3 MalwareDetection.py <path to testing data>`
@@ -44,30 +49,35 @@ Generates `training_data.csv` and `trained_model.csv`
 Compressed `filtered_data`, use `7z x filtered.7z -ofiltered_data` to create `filtered_data` directory
 
 ### [trained_model.pickle](trained_model.pickle)
-Trained model generated after training from `filtered_data`
+Trained model generated after training from `filtered_data` 
 
-### [output.csv](output.csv)
-Output csv containing filename, class pairs
+### output.csv
+Output csv containing filename, class pairs  
+> Generated on running MalwareDetection.py
 
-### [temp_features.csv](temp_features.csv)
+### temp_features.csv
 Temporary selected features of test_data are stored
+> Generated on running MalwareDetection.py
 
-### [filtered_data](filtered_data)
+### filtered_data
 Filtered training data is stored in this directory used for further training of model
+> `7z x filtered.7z -ofiltered_data`
 
 ### [training_data.csv](training_data.csv)
 Generates an intermediate csv of selected features from `filtered_data`
+> generated on running train.py
 
 ### [requirements.txt](requirements.txt)
-Details of packages installed
+Details of packages installed  
 `pip3 install -r requirements.txt`
 
 ### [clean.py](clean.py)
 Cleans the temporary results in `filtered_data` and `temp_features.csv` 
 Usage: `python3 clean.py`
 
-### [temp_test_filtered](temp_test_filtered)
-Temporary directory generated on running `MalwareDetection.py` which contains the filtered test files
+### temp_test_filtered
+Temporary directory generated on running `MalwareDetection.py` which contains the filtered test files  
+> Generated on running MalwareDetection.py
 
 
 ## Feature Extraction (Pre-Processing)
@@ -161,3 +171,21 @@ Malware files are usually packed with common packers like UPX, ASPack, etc. They
 Most malwares try to connect to a remote server, either to transfer data or to establish a reverse shell. The number of UDP destination addresses can very effectively differentiate a malware from a benign executable, as malware are likely to make more UDP calls.
 
 ![](plots/udp_dst.png)
+
+
+## Training
+In training phase, the most time is taken for filtering features, it takes about two hours to parse and generate intermediate files for about 10000 training files.  
+Once `filtered_data` is generated (which has been provided in the package), training a model takes about 2 minutes.
+
+We chose DecisionTree Classifier as the base estimator for Bagging Classifier
+The classifier classifies between the classes Benign, Trojan, Virus, Worm, Trojandownloader, Trojandropper, Backdoor with a training accuracy of 96%
+Squishing the classifier to Benign and Malware produces a very good classifier with almost 100% precision, recall and fscore even with  training/testing split to be 60/40.
+
+```
+BAG SCORE: 0.9798792756539235
+ACCURACY: 1.0
+PRECISION: [1. 1.]
+RECALL: [1. 1.]
+F-SCORE: [1. 1.]
+```
+
