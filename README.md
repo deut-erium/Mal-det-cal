@@ -151,8 +151,6 @@ As most malwares are packed their size is generally smaller than a benign file. 
 
 Malware files are usually packed with common packers like UPX, ASPack, etc. They can be identified using the header of the files where the signature of the packer is present.
 
-![](plots/packer.png)
-
 ### UDP Destination Address
 
 Most malwares try to connect to a remote server, either to transfer data or to establish a reverse shell. The number of UDP destination addresses can very effectively differentiate a malware from a benign executable, as malware are likely to make more UDP calls.
