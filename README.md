@@ -6,6 +6,11 @@ Detects and classifies malware from static and dynamic analysis of the file
 - Dynamic Analysis
   - Dynamic analysis information extracted by running PE in cucoo sandbox
 
+# Team IITBreachers
+## Himanshu Sheoran
+## Lakshay Kumar
+## Ritik Roongta
+
 ## Submission Structure
 ### [MalwareDetection.py](MalwareDetection.py)
 Usage info: `python3 MalwareDetection.py <path to testing data>`
