@@ -133,4 +133,28 @@ filtered_data: A dictionary with selected fields namely
 The PE sections contain data which usually has a known entropy. Higher entropy can indicate packed data. Malicious files are commonly packed to avoid static analysis since the actual code is usually stored encrypted in one of the sections and will only be extracted at runtime.    
 So entropy is an important feature, we used average, min and max entropy as separate features.   
 
+![](plots/max_entropy.png)
 
+### Number of Strings (num_strings)
+
+Number of strings in the strings.txt file is an important feature because most malwares are packed and contain less strings as compared to a benign executable that is not packed.
+
+![](plots/num_strings.png)
+
+### Size of file (Length)
+
+As most malwares are packed their size is generally smaller than a benign file. In the plot, we can see that most benign executables have larger size.
+
+![](plots/len.png)
+
+### Packer present
+
+Malware files are usually packed with common packers like UPX, ASPack, etc. They can be identified using the header of the files where the signature of the packer is present.
+
+![](plots/packer.png)
+
+### UDP Destination Address
+
+Most malwares try to connect to a remote server, either to transfer data or to establish a reverse shell. The number of UDP destination addresses can very effectively differentiate a malware from a benign executable, as malware are likely to make more UDP calls.
+
+![](plots/udp_dst.png)
