@@ -36,7 +36,7 @@ Usage: `python3 train.py`
 Generates `training_data.csv` and `trained_model.csv`
 
 ### [filtered.7z](filtered.7z)
-Compressed `filtered_data`, use `7z x filtered.7z` to create `filtered_data` directory
+Compressed `filtered_data`, use `7z x filtered.7z -ofiltered_data` to create `filtered_data` directory
 
 ### [trained_model.pickle](trained_model.pickle)
 Trained model generated after training from `filtered_data`
