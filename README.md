@@ -8,7 +8,7 @@ Detects and classifies malware from static and dynamic analysis of the file
 
 # Team IITBreachers
 ## Himanshu Sheoran
-## Lakshay Kumar
+## Lakshya Kumar
 ## Ritik Roongta
 
 ## Requirements to run
