@@ -1,10 +1,10 @@
-# Malware Detection
-Detects and classifies malware from static and dynamic analysis of the file
+# Malware Detection cum Classifier
+Detects and classifies malware from static and dynamic analysis of a PE executable
 - Static Analysis
   - Strings.txt (contains strings output of file)
   - Structure_Info.txt (contains the PE structure info of the PE file)
 - Dynamic Analysis
-  - Dynamic analysis information extracted by running PE in cucoo sandbox
+  - Dynamic analysis information extracted by running PE in cuckoo sandbox
 
 # Team IITBreachers
 ## Himanshu Sheoran
