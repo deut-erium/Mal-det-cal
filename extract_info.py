@@ -1,8 +1,9 @@
 import pefile
-import argparse
+import sys
 from hashlib import sha256
 import re
 import os
+import tqdm
 
 def sha256_sum(file_name):
     """
@@ -51,9 +52,10 @@ def structure_info(file_name, output_file):
     """
     try:
         with open(output_file,'w') as output:
-            output.write(pefile.PE("bin/ZipCrack.exe").dump_info())
+            output.write(pefile.PE(file_name).dump_info())
     except pefile.PEFormatError:
         #print("{} not a PE".format(file_name))
+        os.remove(output_file)
         return False
     return True
     
@@ -75,9 +77,9 @@ def extract_info_file(file_name, output_path):
     status = structure_info(file_name,os.path.join(savepath, "Structure_Info.txt"))
     if status:
         strings(file_name, os.path.join(savepath, "String.txt"))
+        print(file_name, sha256)
     else:
-        if not os.listdir(savepath): # do not kick pre existing stuff
-            os.rmdir(savepath)
+        os.rmdir(savepath)
     
 def list_files(path):
     """
@@ -90,8 +92,17 @@ def list_files(path):
     """
     for subpath, dirs, files in os.walk(path):
         for file in files:
-            yield os.path.join(subpath, file)
-    
+            yield os.path.join(path,subpath, file)
+
+def all_files_list(path):
+    """
+    return a list of all files in path
+    """
+    retlist = []
+    for subpath, dirs, files in os.walk(path):
+        retlist += list(map(lambda x: os.path.join(path, subpath, x), files))
+    return retlist
+
 def extract_all(path, output_path):
     """
     extract structure and strings info for all files under path
@@ -102,8 +113,8 @@ def extract_all(path, output_path):
     Returns:
         None: extracts structure and strings info for all valid PE files under path
     """
-    for file in list_files(path):
-        extract_info_file(file, output_path)
+    for filef in tqdm.tqdm(all_files_list(path), ascii = False):
+        extract_info_file(filef, output_path)
 
 if __name__ == "__main__":
     USAGE = """ for extracting info for a single file use
@@ -111,4 +122,18 @@ python3 extract_info.py file <path/to/file> <path/to/savepath>
 
 for extracting info for all files under a path use
 python3 extract_info.py path <path> <path/to/savepath>"""
-
+    if len(sys.argv) == 4:
+        if not os.path.exists(sys.argv[3]):
+            print("Path {} does not exist".format(sys.argv[3]))
+            print(USAGE)
+            exit(1)
+        elif sys.argv[1] == 'file':
+            extract_info_file(sys.argv[2], sys.argv[3])
+        elif sys.argv[1] == 'path':
+            extract_all(sys.argv[2], sys.argv[3])
+        else:
+            print(USAGE)
+            exit(1)
+    else:
+        print(USAGE)
+        exit(1)
