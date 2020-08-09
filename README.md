@@ -6,10 +6,15 @@ Detects and classifies malware from static and dynamic analysis of a PE executab
 - Dynamic Analysis
   - Dynamic analysis information extracted by running PE in cuckoo sandbox
 
-# Team IITBreachers
-## Himanshu Sheoran
-## Lakshya Kumar
-## Ritik Roongta
+## Generating the required structure
+If you have to test a PE executable or a path for all PE executables, run  
+`python3 extract_info.py file <path/to/file> <path/to/savefile>`  
+
+`python3 extract_info.py path <path/to/file> <path/to/savefile>`  
+This will check all files recursively under path and produce the required directory structure in `<path/to/savefile>`  
+And a list of (filepath, sha256) pairs in `files_info.txt` 
+
+Run `python3 MalwareDetection.py <path/to/savefile>` to check the files
 
 ## Requirements to run
 We have run on python3.8, use requirements.txt to install the required packages  
@@ -44,6 +49,9 @@ Usage: `python3 train.py filter <path to training data>`
 If the training data has been filtered already into `filtered_data`  
 Usage: `python3 train.py`  
 Generates `training_data.csv` and `trained_model.csv`
+
+### [extract_info.py](extract_info.py)
+Extract info in required format from a file or from all files in path
 
 ### [filtered.7z](filtered.7z)
 Compressed `filtered_data`, use `7z x filtered.7z -ofiltered_data` to create `filtered_data` directory
@@ -191,3 +199,7 @@ RECALL: [1. 1.]
 F-SCORE: [1. 1.]
 ```
 
+## Contributors
+- Himanshu Sheoran @deut-erium
+- Lakshya Kumar @p0i5on8
+- Ritik Roongta @Racro
