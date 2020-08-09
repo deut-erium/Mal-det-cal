@@ -77,7 +77,8 @@ def extract_info_file(file_name, output_path):
     status = structure_info(file_name,os.path.join(savepath, "Structure_Info.txt"))
     if status:
         strings(file_name, os.path.join(savepath, "String.txt"))
-        print(file_name, sha256)
+        with open('files_info.txt','a') as details:
+            details.write(file_name+','+sha256+'\n')
     else:
         os.rmdir(savepath)
     
@@ -103,6 +104,7 @@ def all_files_list(path):
         retlist += list(map(lambda x: os.path.join(path, subpath, x), files))
     return retlist
 
+
 def extract_all(path, output_path):
     """
     extract structure and strings info for all files under path
@@ -115,6 +117,7 @@ def extract_all(path, output_path):
     """
     for filef in tqdm.tqdm(all_files_list(path), ascii = False):
         extract_info_file(filef, output_path)
+    print("Name, sha256hash pairs stored in files_info.txt")
 
 if __name__ == "__main__":
     USAGE = """ for extracting info for a single file use
