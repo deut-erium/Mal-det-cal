@@ -200,6 +200,6 @@ F-SCORE: [1. 1.]
 ```
 
 ## Contributors
-- Himanshu Sheoran @deut-erium
-- Lakshya Kumar @p0i5on8
-- Ritik Roongta @Racro
+- Himanshu Sheoran [@deut-erium](https://github.com/deut-erium)
+- Lakshya Kumar [@p0i5on8](https://github.com/p0i5on8)
+- Ritik Roongta [@Racro](https://github.com/racro)
